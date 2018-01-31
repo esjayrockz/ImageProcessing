@@ -1,0 +1,16 @@
+clear;
+a = imread('model-t.png');
+a = double(a);
+k1 = 1.0/8.0 * [1 0 -1; 2 0 -2; 1 0 -1];
+gx = double(imfilter(a,k1));
+imshow(gx,[]);
+k2 = 1.0/8.0 * [1 2 1; 0 0 0; -1 -2 -1];
+gy = imfilter(a,k2);
+imshow(gy,[]);
+gm = sqrt(gx .^ 2 + gy .^ 2);
+imshow(gm,[]);
+figure('name','Edge Detection');
+title('Edge Detection');
+gm2=uint8(gm);
+edge = imbinarize(gm2);
+imshow(edge);
